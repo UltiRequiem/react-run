@@ -7,10 +7,7 @@ use clap::Parser;
     about = "Easily run React snippets"
 )]
 pub struct Args {
-    #[clap(short, long)]
     pub file: String,
     #[clap(short, long, default_value_t = 8080)]
     pub port: u16,
-    #[clap(short, long)]
-    pub offline: bool,
 }

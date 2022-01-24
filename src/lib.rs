@@ -10,7 +10,17 @@ pub fn run() {
     let args = Args::parse();
     let app = react_app(&args.file);
     let port = format!("localhost:{}", args.port);
-    let listener = net::TcpListener::bind(&port).expect("Could not bind to port");
+
+    let listener = match net::TcpListener::bind(&port) {
+        Ok(listener) => listener,
+        Err(e) => {
+            eprintln!(
+                "Cannot bind to port {}, probably is busy by other process: {}",
+                &port, e
+            );
+            process::exit(1);
+        }
+    };
 
     println!("{}{}", "Listening on http://".blue(), &port.blue());
 
