@@ -7,6 +7,7 @@
 The entry point is a component called `App`, example:
 
 ```javascript
+// example.js
 export default function App() {
   const [count, setCount] = React.useState(0);
 
@@ -23,8 +24,10 @@ export default function App() {
 You could run this with:
 
 ```sh
-react-run examples/simple.js
+react-run example.js
 ```
+
+This will open your default browser with your file loaded.
 
 You can also import libraries/components, check
 [examples/imports.js](./examples/imports.js).

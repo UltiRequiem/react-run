@@ -2,6 +2,7 @@ pub mod config;
 use clap::StructOpt;
 use colored::Colorize;
 use config::Args;
+use open::that;
 use std::{fs, io::prelude::*, net, process};
 
 static TEMPLATE: &str = include_str!("template.html");
@@ -23,6 +24,8 @@ pub fn run() {
     };
 
     println!("{}{}", "Listening on http://".blue(), &port.blue());
+
+    that(format!("http://{}", &port)).unwrap();
 
     for stream in listener.incoming() {
         let stream = stream.unwrap();
