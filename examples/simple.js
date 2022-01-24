@@ -1,16 +1,14 @@
-function sum(...numbers) {
-  return numbers.reduce((acc, curr) => acc + curr, 0);
-}
-
 function App() {
   const [count, setCount] = React.useState(0);
 
+  const style = { background: "red", color: "white", padding: "1em" };
+
   return (
-    <div>
+    <div style={style}>
       <h1>Hello World</h1>
       <p>This is a simple example of a React app.</p>
-      <p> {sum(1, 3, 4, 10, 4)}</p>
       <p>{count}</p>
+      <button onClick={() => setCount(count + Math.random())}>+ random</button>
       <button onClick={() => setCount(count + 1)}>+1</button>
     </div>
   );
