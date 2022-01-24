@@ -19,7 +19,7 @@ export default function App() {
       <h1>React Calendar</h1>
       <Calendar onChange={onChange} value={value} />
       <div>
-        <p>Date selected: {value.toString()}</p>
+        <p>Date selected: {value.toDateString()}</p>
       </div>
     </div>
   );
