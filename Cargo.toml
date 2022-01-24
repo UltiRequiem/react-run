@@ -6,3 +6,5 @@ edition = "2021"
 [dependencies]
 clap = { version = "3.0.10", features = ["derive"] }
 colored = "2"
+swc_common = "0.17.2"
+swc_ecma_parser = "0.87.1"

@@ -5,7 +5,6 @@ use config::Args;
 use std::{fs, io::prelude::*, net, process};
 
 static TEMPLATE: &str = include_str!("template.html");
-static BABEL: &str = include_str!("babel.js");
 
 pub fn run() {
     let args = Args::parse();
@@ -34,7 +33,13 @@ fn react_app(file: &str) -> String {
 }
 
 fn handle_connection(mut stream: net::TcpStream, app: &str) {
-    stream.read(&mut [0; 1024]).unwrap();
+    match stream.read(&mut [0; 1024]) {
+        Ok(_) => println!("{}", "Request received.".green()),
+        Err(error) => {
+            eprintln!("Error reading the stream: {}", error);
+            process::exit(1);
+        }
+    };
 
     let response = format!(
         "HTTP/1.1 200 OK\r\nContent-Length: {}\r\n\r\n{}",
@@ -44,7 +49,10 @@ fn handle_connection(mut stream: net::TcpStream, app: &str) {
 
     match stream.write(response.as_bytes()) {
         Ok(_) => println!("[{}]", "Ping!".green()),
-        Err(e) => eprintln!("Could not write to stream: {}.", e),
+        Err(error) => {
+            eprintln!("Could not write to stream: {}.", error);
+            process::exit(1);
+        }
     };
 
     stream.flush().unwrap();
