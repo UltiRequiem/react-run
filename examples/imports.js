@@ -5,14 +5,22 @@ export default function App() {
 
   const style = {
     background: "blue",
+    height: "90vh",
+    alignItems: "center",
+    justifyContent: "center",
+    display: "flex",
     color: "white",
+    flexDirection: "column",
     padding: "1em",
   };
 
   return (
     <div style={style}>
+      <h1>React Calendar</h1>
       <Calendar onChange={onChange} value={value} />
-      <p>Date selected: {value.toString()}</p>
+      <div>
+        <p>Date selected: {value.toString()}</p>
+      </div>
     </div>
   );
 }

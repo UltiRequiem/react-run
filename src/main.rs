@@ -1,7 +1,8 @@
 use clap::Parser;
+use colored::Colorize;
 use std::{fs, io::prelude::*, net, process};
 
-static TEMPLATE: &'static str = include_str!("template.html");
+static TEMPLATE: &str = include_str!("template.html");
 
 #[derive(Parser)]
 #[clap(
@@ -16,11 +17,11 @@ struct Args {
     port: u16,
 }
 
-fn react_app(file: &String) -> String {
+fn react_app(file: &str) -> String {
     let app = match fs::read_to_string(file) {
         Ok(app) => app,
         Err(e) => {
-            eprintln!("Could not read file \"{}\": {}.", file, e);
+            eprintln!("Could not read file \"{}\": {}.", file.green(), e);
             process::exit(1);
         }
     };
@@ -42,7 +43,7 @@ fn main() {
     }
 }
 
-fn handle_connection(mut stream: net::TcpStream, app: &String) {
+fn handle_connection(mut stream: net::TcpStream, app: &str) {
     println!("Ping!");
 
     let mut buffer = [0; 1024];
