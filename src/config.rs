@@ -11,8 +11,6 @@ pub struct Args {
     pub file: String,
     #[clap(short, long, default_value_t = 8080)]
     pub port: u16,
-}
-
-pub fn get_config() -> Args {
-    Args::parse()
+    #[clap(short, long)]
+    pub offline: bool,
 }
