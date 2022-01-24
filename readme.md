@@ -31,7 +31,7 @@ react-run example.js
 
 This will open your default browser with your component loaded.
 
-Check the [examples/] to see what is supported.
+Check the [examples/](./examples) to see what is supported.
 
 ## Installation
 
