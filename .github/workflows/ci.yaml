@@ -8,19 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install latest nightly
+      - name: Install clippy and rustfmt
         uses: actions-rs/toolchain@v1
         with:
           toolchain: nightly
           override: true
           components: clippy, rustfmt
 
-      - name: Run clippy
-        uses: actions-rs/cargo@v1
-        with:
-          command: clippy
-
-      - name: Run rustfmt
-        uses: actions-rs/cargo@v1
-        with:
-          command: fmt --check
+      - run: cargo clippy
+      - run: cargo fmt --check
