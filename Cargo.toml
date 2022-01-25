@@ -5,7 +5,6 @@ description = "Run React code snippets/components from your command-line without
 license = "MIT"
 homepage = "https://github.com/UltiRequiem/react-run"
 repository = "https://github.com/UltiRequiem/react-run"
-license-file = "license"
 edition = "2021"
 
 [dependencies]

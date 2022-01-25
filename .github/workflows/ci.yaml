@@ -13,9 +13,14 @@ jobs:
         with:
           toolchain: nightly
           override: true
-          components: clippy
+          components: clippy, rustfmt
 
       - name: Run clippy
         uses: actions-rs/cargo@v1
         with:
           command: clippy
+
+      - name: Run rustfmt
+        uses: actions-rs/cargo@v1
+        with:
+          command: fmt --check
