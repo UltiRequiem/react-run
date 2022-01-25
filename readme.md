@@ -57,7 +57,13 @@ You could run this with:
 react-run example.tsx # or example.js
 ```
 
-</details>
+Or If you don't want to have the file in your local machine:
+
+```sh
+react-run https://raw.githubusercontent.com/UltiRequiem/react-run/main/examples/typescript.tsx
+```
+
+> Yep, just like [Deno](https://deno.land)
 
 This will open your default browser with your component loaded.
 
