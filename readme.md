@@ -75,6 +75,8 @@ This will open your default browser with your component loaded.
 
 - Import External Libraries
 
+- Run via URL
+
 Check the [examples/](./examples) to see what is supported.
 
 ## Installation
@@ -90,7 +92,7 @@ Or use a binary from
 
 ## Roadmap
 
-- [x] Support running URLS [#2](https://github.com/UltiRequiem/react-run/issues/3)
+- [x] Support running URL [#2](https://github.com/UltiRequiem/react-run/issues/3)
 - [x] Support TypeScript [#2](https://github.com/UltiRequiem/react-run/issues/2)
 - [ ] Live Reload [#1](https://github.com/UltiRequiem/react-run/issues/1)
 

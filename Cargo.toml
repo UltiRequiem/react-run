@@ -11,7 +11,5 @@ edition = "2021"
 clap = { version = "3.0.10", features = ["derive"] }
 minreq = { version = "2.5.1", features = ["https"] }
 colored = "2"
-swc_common = "0.17.2"
-swc_ecma_parser = "0.87.1"
 open = "2.0.2"
 url = "2"
