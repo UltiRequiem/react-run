@@ -8,7 +8,7 @@ Run React(JS/TS) code snippets/components from your command-line without config.
 
 The entry point is a component called `App`, example:
 
-```typescript
+```tsx
 // example.tsx
 
 function ProductList({ products }: { products: string[] }) {
