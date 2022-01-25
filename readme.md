@@ -44,6 +44,11 @@ cargo install react-run
 Or use a binary from
 [releases](https://github.com/UltiRequiem/react-run/releases/latest).
 
+## Roadmap
+
+- [ ] Support TypeScript [#2](https://github.com/UltiRequiem/react-run/issues/2)
+- [ ] Live Reload [#1](https://github.com/UltiRequiem/react-run/issues/1)
+
 ## License
 
 Licensed under the MIT licence.
