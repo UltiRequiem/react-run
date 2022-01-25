@@ -8,32 +8,7 @@ Run React(JS/TS) code snippets/components from your command-line without config.
 
 The entry point is a component called `App`, example:
 
-<details>
-
-  <summary>JavaScript</summary>
-
-```javascript
-// example.js
-export default function App() {
-  const [count, setCount] = React.useState(0);
-
-  return (
-    <div style={{ background: "purple", color: "white", padding: "10px" }}>
-      <h1>Hello World</h1>
-      <p>{count}</p>
-      <button onClick={() => setCount(count + Math.random())}>+ random</button>
-    </div>
-  );
-}
-```
-
-</details>
-
-<details>
-
-  <summary>TypeScript</summary>
-
-```javascript
+```typescript
 // example.tsx
 
 function ProductList({ products }: { products: string[] }) {
@@ -55,26 +30,31 @@ export default function App() {
 }
 ```
 
-</details>
-
-You could run this with:
-
 <details>
 
-<summary>JavaScript</summary>
+  <summary>JavaScript</summary>
 
-```sh
-react-run example.js
+```javascript
+// example.js
+export default function App() {
+  const [count, setCount] = React.useState(0);
+
+  return (
+    <div style={{ background: "purple", color: "white", padding: "10px" }}>
+      <h1>Hello World</h1>
+      <p>{count}</p>
+      <button onClick={() => setCount(count + Math.random())}>+ random</button>
+    </div>
+  );
+}
 ```
 
 </details>
 
-<details>
-
-<summary>TypeScript</summary>
+You could run this with:
 
 ```sh
-react-run example.tsx
+react-run example.tsx # or example.js
 ```
 
 </details>
@@ -85,7 +65,7 @@ This will open your default browser with your component loaded.
 
 - TypeScript
 
-- Function/Class Components
+- Function/Class Component
 
 - Import External Libraries
 
@@ -104,6 +84,7 @@ Or use a binary from
 
 ## Roadmap
 
+- [x] Support running URLS [#2](https://github.com/UltiRequiem/react-run/issues/3)
 - [x] Support TypeScript [#2](https://github.com/UltiRequiem/react-run/issues/2)
 - [ ] Live Reload [#1](https://github.com/UltiRequiem/react-run/issues/1)
 
