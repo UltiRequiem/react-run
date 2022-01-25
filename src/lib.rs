@@ -2,8 +2,10 @@ pub mod config;
 use clap::StructOpt;
 use colored::Colorize;
 use config::Args;
+use minreq::get;
 use open::that;
 use std::{fs, io::prelude::*, net, process};
+use url::Url;
 
 static TEMPLATE: &str = include_str!("template.html");
 
@@ -25,7 +27,9 @@ pub fn run() {
 
     println!("{}{}", "Listening on http://".blue(), &port.blue());
 
-    that(format!("http://{}", &port)).unwrap();
+    if !args.simple {
+        that(format!("http://{}", &port)).unwrap();
+    };
 
     for stream in listener.incoming() {
         let stream = stream.unwrap();
@@ -34,11 +38,33 @@ pub fn run() {
 }
 
 fn react_app(file: &str) -> String {
-    let app = match fs::read_to_string(file) {
-        Ok(app) => app,
-        Err(e) => {
-            eprintln!("Could not read file \"{}\": {}.", file.green(), e);
-            process::exit(1);
+    let is_url = Url::parse(&file).is_ok();
+
+    let app = if is_url {
+        let resp = match get(&*file).send() {
+            Ok(resp) => resp,
+            Err(e) => {
+                eprintln!("Error fetching that URL: {}", e);
+                process::exit(1);
+            }
+        };
+
+        let app = match resp.as_str() {
+            Ok(app) => app,
+            Err(e) => {
+                eprintln!("Error parsing response as string: {}", e);
+                process::exit(1);
+            }
+        };
+
+        String::from(app)
+    } else {
+        match fs::read_to_string(file) {
+            Ok(app) => app,
+            Err(e) => {
+                eprintln!("Could not read file \"{}\": {}.", file.green(), e);
+                process::exit(1);
+            }
         }
     };
 

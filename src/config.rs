@@ -10,4 +10,7 @@ pub struct Args {
     pub file: String,
     #[clap(short, long, default_value_t = 8080)]
     pub port: u16,
+    /// If passed your component will not be open on the browser automatically
+    #[clap(short, long)]
+    pub simple: bool,
 }
