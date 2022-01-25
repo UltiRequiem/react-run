@@ -92,7 +92,7 @@ Or use a binary from
 
 ## Roadmap
 
-- [x] Support running URL [#2](https://github.com/UltiRequiem/react-run/issues/3)
+- [x] Support running URL [#3](https://github.com/UltiRequiem/react-run/issues/3)
 - [x] Support TypeScript [#2](https://github.com/UltiRequiem/react-run/issues/2)
 - [ ] Live Reload [#1](https://github.com/UltiRequiem/react-run/issues/1)
 
