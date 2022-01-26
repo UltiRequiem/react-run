@@ -1,25 +1,24 @@
 use colored::Colorize;
 use open::that;
-use std::{io::prelude::*, net, process};
+use std::{io::prelude::*, net};
 
 // TODO: Manage Request asynchronously
 
-pub async fn serve(app: &str, port: &str, open_on_browser: bool) {
-    let listener = match net::TcpListener::bind(&port) {
-        Ok(listener) => listener,
-        Err(e) => {
-            eprintln!(
-                "Cannot bind to port {}, probably is busy by other process: {}",
-                &port, e
-            );
-            process::exit(1);
-        }
-    };
+pub async fn serve(app: &str, addr: &str, open_on_browser: bool) {
+    let listener = net::TcpListener::bind(&addr)
+        .unwrap_or_else(|e| panic!("Port {} is already used: {}", &addr, e));
 
-    println!("{}{}", "Listening on http://".blue(), &port.blue());
+    let url = format!("http://{}", &addr);
+
+    println!("{}{}", "Listening on ".blue(), url.blue());
 
     if open_on_browser {
-        that(format!("http://{}", &port)).unwrap();
+        that(url).unwrap_or_else(|e| {
+            eprintln!(
+                "Failed to open the component on your default browser: {}",
+                e
+            );
+        });
     };
 
     for stream in listener.incoming() {
@@ -31,10 +30,7 @@ pub async fn serve(app: &str, port: &str, open_on_browser: bool) {
 fn handle_connection(mut stream: net::TcpStream, app: &str) {
     match stream.read(&mut [0; 1024]) {
         Ok(_) => println!("{}", "Request received.".green()),
-        Err(error) => {
-            eprintln!("Error reading the stream: {}", error);
-            process::exit(1);
-        }
+        Err(error) => panic!("Error reading the stream: {}", error),
     };
 
     let response = format!(
@@ -45,10 +41,7 @@ fn handle_connection(mut stream: net::TcpStream, app: &str) {
 
     match stream.write(response.as_bytes()) {
         Ok(_) => println!("[{}]", "Ping!".green()),
-        Err(error) => {
-            eprintln!("Could not write to stream: {}.", error);
-            process::exit(1);
-        }
+        Err(error) => panic!("Could not write to stream: {}.", error),
     };
 
     stream.flush().unwrap();

@@ -1,39 +1,28 @@
 use colored::Colorize;
 use minreq::get;
-use std::{fs, process};
+use std::fs;
 use url::Url;
 
 static TEMPLATE: &str = include_str!("template.html");
 
+fn is_valid_url(url: &str) -> bool {
+    Url::parse(url).is_ok()
+}
+
 pub async fn react_app(file: &str) -> String {
-    let is_url = Url::parse(&file).is_ok();
+    let app = if is_valid_url(file) {
+        let resp = get(&*file)
+            .send()
+            .unwrap_or_else(|e| panic!("Error fetching that \"{}\": {:?}", file, e));
 
-    let app = if is_url {
-        let resp = match get(&*file).send() {
-            Ok(resp) => resp,
-            Err(e) => {
-                eprintln!("Error fetching that URL: {}", e);
-                process::exit(1);
-            }
-        };
-
-        let app = match resp.as_str() {
-            Ok(app) => app,
-            Err(e) => {
-                eprintln!("Error parsing response as string: {}", e);
-                process::exit(1);
-            }
-        };
+        let app = resp
+            .as_str()
+            .unwrap_or_else(|e| panic!("Error parsing response as string: {:?}", e));
 
         app.to_owned()
     } else {
-        match fs::read_to_string(file) {
-            Ok(app) => app,
-            Err(e) => {
-                eprintln!("Could not read file \"{}\": {}.", file.green(), e);
-                process::exit(1);
-            }
-        }
+        fs::read_to_string(file)
+            .unwrap_or_else(|e| panic!("Could not read file \"{}\": {:?}.", file.green(), e))
     };
 
     TEMPLATE.replace("// APP", &app)

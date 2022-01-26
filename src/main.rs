@@ -8,5 +8,5 @@ pub async fn main() {
     let app = build::react_app(&args.file).await;
     let port = format!("localhost:{}", args.port);
 
-    server::serve(&app, &port, !args.simple).await;
+    server::serve(&app, &port, args.simple).await;
 }
