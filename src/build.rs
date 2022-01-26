@@ -1,4 +1,3 @@
-use colored::Colorize;
 use minreq::get;
 use std::fs;
 use url::Url;
@@ -13,7 +12,7 @@ pub async fn react_app(file: &str) -> String {
     let app = if is_valid_url(file) {
         let resp = get(&*file)
             .send()
-            .unwrap_or_else(|e| panic!("Error fetching that \"{}\": {:?}", file, e));
+            .unwrap_or_else(|e| panic!("Error fetching \"{}\": {:?}", file, e));
 
         let app = resp
             .as_str()
@@ -22,7 +21,7 @@ pub async fn react_app(file: &str) -> String {
         app.to_owned()
     } else {
         fs::read_to_string(file)
-            .unwrap_or_else(|e| panic!("Could not read file \"{}\": {:?}.", file.green(), e))
+            .unwrap_or_else(|e| panic!("Could not read file \"{}\": {:?}.", file, e))
     };
 
     TEMPLATE.replace("// APP", &app)

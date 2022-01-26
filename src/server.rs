@@ -2,9 +2,7 @@ use colored::Colorize;
 use open::that;
 use std::{io::prelude::*, net};
 
-// TODO: Manage Request asynchronously
-
-pub async fn serve(app: &str, addr: &str, open_on_browser: bool) {
+pub fn serve(app: &str, addr: &str, nobrowser: bool) {
     let listener = net::TcpListener::bind(&addr)
         .unwrap_or_else(|e| panic!("Port {} is already used: {}", &addr, e));
 
@@ -12,7 +10,7 @@ pub async fn serve(app: &str, addr: &str, open_on_browser: bool) {
 
     println!("{}{}", "Listening on ".blue(), url.blue());
 
-    if open_on_browser {
+    if nobrowser {
         that(url).unwrap_or_else(|e| {
             eprintln!(
                 "Failed to open the component on your default browser: {}",

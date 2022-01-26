@@ -12,7 +12,7 @@ pub struct Args {
     pub port: u16,
     /// If passed your component will not be open on the browser automatically
     #[clap(short, long)]
-    pub simple: bool,
+    pub nobrowser: bool,
 }
 
 pub fn get_args() -> Args {
