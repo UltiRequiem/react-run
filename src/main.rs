@@ -8,5 +8,5 @@ async fn main() {
     let app = build::react_app(&args.file);
     let port = format!("localhost:{}", args.port);
 
-    server::serve(&app, &port, !args.nobrowser);
+    server::serve(&app, &port, !args.nobrowser).await;
 }

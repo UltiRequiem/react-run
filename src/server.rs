@@ -2,7 +2,7 @@ use colored::Colorize;
 use open::that;
 use std::{io::prelude::*, net};
 
-pub fn serve(app: &str, addr: &str, nobrowser: bool) {
+pub async fn serve(app: &str, addr: &str, nobrowser: bool) {
     let listener = net::TcpListener::bind(&addr)
         .unwrap_or_else(|e| panic!("Adders \"{}\" is already used: {}", addr, e));
 
@@ -20,7 +20,7 @@ pub fn serve(app: &str, addr: &str, nobrowser: bool) {
 }
 
 fn handle_connection(mut stream: net::TcpStream, app: &str) {
-    stream
+    let _bytes_proceeded = stream
         .read(&mut [0; 1024])
         .unwrap_or_else(|e| panic!("Failed to read from stream: {}", e));
 
@@ -31,10 +31,10 @@ fn handle_connection(mut stream: net::TcpStream, app: &str) {
     );
 
     stream
-        .write(response.as_bytes())
+        .write_all(response.as_bytes())
         .unwrap_or_else(|e| panic!("Could not write to stream: {}.", e));
 
     stream.flush().unwrap();
 
-    println!("[{}]", "Ping".green())
+    println!("[{}]", "Ping!".green())
 }
