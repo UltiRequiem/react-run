@@ -8,13 +8,12 @@ fn is_valid_url(url: &str) -> bool {
     Url::parse(url).is_ok()
 }
 
-pub async fn react_app(file: &str) -> String {
+pub fn react_app(file: &str) -> String {
     let app = if is_valid_url(file) {
-        let resp = get(file)
+        get(file)
             .send()
-            .unwrap_or_else(|e| panic!("Error fetching \"{}\": {:?}", file, e));
-
-        resp.as_str()
+            .unwrap_or_else(|e| panic!("Error fetching \"{}\": {:?}", file, e))
+            .as_str()
             .unwrap_or_else(|e| panic!("Error parsing response as string: {:?}", e))
             .to_owned()
     } else {
