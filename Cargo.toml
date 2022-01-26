@@ -9,6 +9,7 @@ edition = "2021"
 
 [dependencies]
 tokio = { version = "1.15.0", features = ["full"] }
+tungstenite = "0.16.0"
 clap = { version = "3.0.10", features = ["derive"] }
 minreq = { version = "2.5.1", features = ["https"] }
 colored = "2"
