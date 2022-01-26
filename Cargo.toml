@@ -8,6 +8,7 @@ repository = "https://github.com/UltiRequiem/react-run"
 edition = "2021"
 
 [dependencies]
+tokio = { version = "1.15.0", features = ["full"] }
 clap = { version = "3.0.10", features = ["derive"] }
 minreq = { version = "2.5.1", features = ["https"] }
 colored = "2"

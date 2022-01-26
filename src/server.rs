@@ -2,7 +2,9 @@ use colored::Colorize;
 use open::that;
 use std::{io::prelude::*, net, process};
 
-pub fn serve(app: &str, port: &str,open_on_browser: bool) {
+// TODO: Manage Request asynchronously
+
+pub async fn serve(app: &str, port: &str, open_on_browser: bool) {
     let listener = match net::TcpListener::bind(&port) {
         Ok(listener) => listener,
         Err(e) => {

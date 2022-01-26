@@ -1,13 +1,12 @@
-use clap::StructOpt;
-
 pub mod build;
 pub mod config;
 pub mod server;
 
-pub fn main() {
-    let args = config::Args::parse();
-    let app = build::build_react_app(&args.file);
+#[tokio::main]
+pub async fn main() {
+    let args = config::get_args();
+    let app = build::react_app(&args.file).await;
     let port = format!("localhost:{}", args.port);
 
-    server::serve(&app, &port, !args.simple);
+    server::serve(&app, &port, !args.simple).await;
 }

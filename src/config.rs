@@ -14,3 +14,7 @@ pub struct Args {
     #[clap(short, long)]
     pub simple: bool,
 }
+
+pub fn get_args() -> Args {
+    Args::parse()
+}

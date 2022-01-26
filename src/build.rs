@@ -5,7 +5,7 @@ use url::Url;
 
 static TEMPLATE: &str = include_str!("template.html");
 
-pub fn build_react_app(file: &str) -> String {
+pub async fn react_app(file: &str) -> String {
     let is_url = Url::parse(&file).is_ok();
 
     let app = if is_url {
@@ -25,7 +25,7 @@ pub fn build_react_app(file: &str) -> String {
             }
         };
 
-        String::from(app)
+        app.to_owned()
     } else {
         match fs::read_to_string(file) {
             Ok(app) => app,
