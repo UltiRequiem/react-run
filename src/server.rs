@@ -1,19 +1,8 @@
-pub mod config;
-use clap::StructOpt;
 use colored::Colorize;
-use config::Args;
-use minreq::get;
 use open::that;
-use std::{fs, io::prelude::*, net, process};
-use url::Url;
+use std::{io::prelude::*, net, process};
 
-static TEMPLATE: &str = include_str!("template.html");
-
-pub fn run() {
-    let args = Args::parse();
-    let app = react_app(&args.file);
-    let port = format!("localhost:{}", args.port);
-
+pub fn serve(app: &str, port: &str,open_on_browser: bool) {
     let listener = match net::TcpListener::bind(&port) {
         Ok(listener) => listener,
         Err(e) => {
@@ -27,7 +16,7 @@ pub fn run() {
 
     println!("{}{}", "Listening on http://".blue(), &port.blue());
 
-    if !args.simple {
+    if open_on_browser {
         that(format!("http://{}", &port)).unwrap();
     };
 
@@ -35,40 +24,6 @@ pub fn run() {
         let stream = stream.unwrap();
         handle_connection(stream, &app);
     }
-}
-
-fn react_app(file: &str) -> String {
-    let is_url = Url::parse(&file).is_ok();
-
-    let app = if is_url {
-        let resp = match get(&*file).send() {
-            Ok(resp) => resp,
-            Err(e) => {
-                eprintln!("Error fetching that URL: {}", e);
-                process::exit(1);
-            }
-        };
-
-        let app = match resp.as_str() {
-            Ok(app) => app,
-            Err(e) => {
-                eprintln!("Error parsing response as string: {}", e);
-                process::exit(1);
-            }
-        };
-
-        String::from(app)
-    } else {
-        match fs::read_to_string(file) {
-            Ok(app) => app,
-            Err(e) => {
-                eprintln!("Could not read file \"{}\": {}.", file.green(), e);
-                process::exit(1);
-            }
-        }
-    };
-
-    TEMPLATE.replace("// APP", &app)
 }
 
 fn handle_connection(mut stream: net::TcpStream, app: &str) {
