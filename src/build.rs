@@ -1,24 +1,19 @@
 use minreq::get;
-use std::{fs, path, sync};
+use std::{fs, sync};
 use url::Url;
 
-use swc::{
-    self,
-    config::{JscConfig, Options},
-};
+use swc::config::{JscConfig, Options};
 use swc_common::{
     errors::{ColorConfig, Handler},
-    SourceMap,
+    FileName, SourceMap,
 };
 
 static TEMPLATE: &str = include_str!("template.html");
 
-fn compile_jsx(file_path: &str) -> String {
+fn compile_jsx(app: &str) -> String {
     let cm = sync::Arc::<SourceMap>::default();
 
-    let fm = cm
-        .load_file(path::Path::new(file_path))
-        .expect("failed to load file");
+    let fm = cm.new_source_file(FileName::Custom("temp_file_name".into()), app.into());
 
     let handler = sync::Arc::new(Handler::with_tty_emitter(
         ColorConfig::Auto,
@@ -59,19 +54,19 @@ fn is_valid_url(url: &str) -> bool {
 }
 
 pub fn react_app(file: &str) -> String {
-    /* let app = if is_valid_url(file) {
-           get(file)
-               .send()
-               .unwrap_or_else(|e| panic!("Error fetching \"{}\": {:?}", file, e))
-               .as_str()
-               .unwrap_or_else(|e| panic!("Error parsing response as string: {:?}", e))
-               .to_owned()
-       } else {
-           fs::read_to_string(file)
-               .unwrap_or_else(|e| panic!("Could not read file \"{}\": {:?}.", file, e))
-       };
-    */
+    let app = if is_valid_url(file) {
+        get(file)
+            .send()
+            .unwrap_or_else(|e| panic!("Error fetching \"{}\": {:?}", file, e))
+            .as_str()
+            .unwrap_or_else(|e| panic!("Error parsing response as string: {:?}", e))
+            .to_owned()
+    } else {
+        fs::read_to_string(file)
+            .unwrap_or_else(|e| panic!("Could not read file \"{}\": {:?}.", file, e))
+    };
 
-    let app = compile_jsx(file);
-    TEMPLATE.replace("// APP", &app)
+    let compiled_app = compile_jsx(&app);
+
+    TEMPLATE.replace("// APP", &compiled_app)
 }
