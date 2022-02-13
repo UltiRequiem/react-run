@@ -1,6 +1,6 @@
 {
-  "name": "react-run",
-  "version": "v0.3.0",
+  "name": "@ultirequiem/react-run",
+  "version": "0.3.0",
   "main": "binary.js",
   "repository": {
     "type": "git",

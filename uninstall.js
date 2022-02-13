@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-const { uninstall } = require("./binary");
+const binary = require("./binary");
 
-uninstall();
+binary.uninstall();

@@ -7,7 +7,9 @@ const error = (msg) => {
   process.exit(1);
 };
 
-const { version, name, repository } = require("./package.json");
+const { version, name } = require("./package.json");
+
+const repository = "https://github.com/UltiRequiem/react-run";
 
 const supportedPlatforms = [
   {
@@ -42,34 +44,19 @@ const getPlatform = () => {
   }
 
   error(
-    `Platform with type "${type}" and architecture "${architecture}" is not supported by ${name}.\nYour system must be one of the following:\n\n${cTable.getTable(
-      supportedPlatforms
-    )}`
+    `Platform with type "${type}" and architecture "${architecture}" is not supported by ${name}.\nYour system must be one of the following:\n\n${
+      cTable.getTable(
+        supportedPlatforms,
+      )
+    }`,
   );
 };
 
 const getBinary = () => {
   const platform = getPlatform();
-  const url = `${repository.url}/releases/download/v${version}/${name}-v${version}-${platform}.tar.gz`;
+  const url =
+    `${repository}/releases/download/v${version}/${name}-v${version}-${platform}.tar.gz`;
   return new Binary(url, { name });
 };
 
-const binary = getBinary();
-
-const run = () => {
-  binary.run();
-};
-
-const install = () => {
-  binary.install();
-};
-
-const uninstall = () => {
-  binary.uninstall();
-};
-
-module.exports = {
-  install,
-  run,
-  uninstall,
-};
+module.exports = getBinary();
