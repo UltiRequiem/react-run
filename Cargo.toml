@@ -14,3 +14,6 @@ minreq = { version = "2.5.1", features = ["https"] }
 colored = "2"
 open = "2.0.2"
 url = "2"
+swc_common = { version = "0.17.2", features = ["tty-emitter"] }
+swc_ecma_parser = "0.87.1"
+swc = "0.116.23"

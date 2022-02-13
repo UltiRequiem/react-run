@@ -92,6 +92,8 @@ Or use a binary from
 
 ## Roadmap
 
+- [x] Integrate with SWC [#4](https://github.com/UltiRequiem/react-run/issues/4)
+      Faster Builds than Babel
 - [x] Support running URL [#3](https://github.com/UltiRequiem/react-run/issues/3)
 - [x] Support TypeScript [#2](https://github.com/UltiRequiem/react-run/issues/2)
 - [ ] Live Reload [#1](https://github.com/UltiRequiem/react-run/issues/1)
