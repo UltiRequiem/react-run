@@ -1,0 +1,26 @@
+{
+  "name": "react-run",
+  "version": "v0.3.0",
+  "main": "binary.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/UltiRequiem/react-run"
+  },
+  "author": "Eliaz Bobadilla <eliaz.bobadilladev@gmail.com>",
+  "license": "MIT",
+  "bin": {
+    "react-run": "./run.js"
+  },
+  "scripts": {
+    "postinstall": "node ./install.js",
+    "preuninstall": "node ./uninstall.js"
+  },
+  "bugs": {
+    "url": "https://github.com/react-run/ultirequiem/issues"
+  },
+  "homepage": "https://github.com/react-run/ultirequiem#readme",
+  "dependencies": {
+    "@cloudflare/binary-install": "^0.2.0",
+    "console.table": "^0.10.0"
+  }
+}
