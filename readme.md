@@ -10,11 +10,11 @@ The entry point is always a component called `App` 👇
 // example.tsx
 
 function ProductList({ products }: { products: string[] }) {
-  return products.map((p: string) => <li>{p}</li>);
+  return products.map((p) => <li>{p}</li>);
 }
 
 export default function App() {
-  const style: { [key: string]: string } = {
+  const style = {
     background: "lightgray",
     padding: "1em",
   };
