@@ -30,48 +30,25 @@ export default function App() {
 }
 ```
 
-<details>
-
-  <summary>JavaScript</summary>
-
-```javascript
-// example.js
-export default function App() {
-  const [count, setCount] = React.useState(0);
-
-  return (
-    <div style={{ background: "purple", color: "white", padding: "10px" }}>
-      <h1>Hello World</h1>
-      <p>{count}</p>
-      <button onClick={() => setCount(count + Math.random())}>+ random</button>
-    </div>
-  );
-}
-```
-
-</details>
-
-You could run this with:
+Run it 🏃
 
 ```sh
-react-run example.tsx # or example.js
+react-run example.tsx
 ```
 
-Or If you don't want to have the file in your local machine:
+Or run a hosted file 🤖
 
 ```sh
 react-run https://raw.githubusercontent.com/UltiRequiem/react-run/main/examples/typescript.tsx
 ```
 
-> Yep, just like [Deno](https://deno.land)
-
 This will open your default browser with your component loaded.
 
 ## Features
 
-- TypeScript
+- JSX/TSX
 
-- Function/Class Component
+- Functional or Class Components
 
 - Import External Libraries
 
@@ -81,8 +58,6 @@ Check the [examples/](./examples) to see what is supported.
 
 ## Installation
 
-With `cargo`:
-
 ```sh
 cargo install react-run
 ```
@@ -90,14 +65,53 @@ cargo install react-run
 Or use a binary from
 [releases](https://github.com/UltiRequiem/react-run/releases/latest).
 
+## Standing on the shoulders of giants
+
+- 🗼 [tokio-rs](https://github.com/tokio-rs/tokio): A runtime for writing
+  reliable asynchronous applications with Rust.
+
+- 🤗 [colored](https://github.com/mackwic/colored): The easier way to have text
+  on your term!
+
+- 👏 [clap](https://github.com/clap-rs/clap): A full featured, fast Command Line
+  Argument Parser for Rust
+
+- ⚡ [minireq](https://github.com/neonmoe/minreq): Simple, minimal-dependency
+  HTTP client.
+
 ## Roadmap
 
 - [x] Integrate with SWC [#4](https://github.com/UltiRequiem/react-run/issues/4)
-      Faster Builds than Babel
-- [x] Support running URL [#3](https://github.com/UltiRequiem/react-run/issues/3)
 - [x] Support TypeScript [#2](https://github.com/UltiRequiem/react-run/issues/2)
+- [x] Support running URLs
+      [#3](https://github.com/UltiRequiem/react-run/issues/3)
 - [ ] Live Reload [#1](https://github.com/UltiRequiem/react-run/issues/1)
 
-## License
+## Support
 
-Licensed under the MIT licence.
+Open an Issue, I will check it a soon as possible 👀
+
+If you want to hurry me up a bit
+[send me a tweet](https://twitter.com/UltiRequiem) 😆
+
+Consider [supporting me on Patreon](https://patreon.com/UltiRequiem) if you like
+my work 🙏
+
+Don't forget to start the repo ⭐
+
+## Versioning
+
+We use [Semantic Versioning](http://semver.org). For the versions available, see
+the [tags](https://github.com/UltiRequiem/react-run/tags) 🏷️
+
+## Authors
+
+[Eliaz Bobadilla](https://ultirequiem.com) - Creator and Maintainer 💪
+
+See also the full list of
+[contributors](https://github.com/UltiRequiem/react-run/contributors) who
+participated in this project ✨
+
+## Licence
+
+Licensed under the MIT License 📄
