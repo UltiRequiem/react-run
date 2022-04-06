@@ -79,6 +79,9 @@ Or use a binary from
 - ⚡ [minireq](https://github.com/neonmoe/minreq): Simple, minimal-dependency
   HTTP client.
 
+- 🏎️ [swc](https://swc.rs): SWC is 20x faster than Babel on a single thread and
+  70x faster on four cores.
+
 ## Roadmap
 
 - [x] Integrate with SWC [#4](https://github.com/UltiRequiem/react-run/issues/4)
