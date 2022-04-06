@@ -1,12 +1,10 @@
 # react-run
 
-[![CI](https://github.com/UltiRequiem/react-run/actions/workflows/ci.yaml/badge.svg)](https://github.com/UltiRequiem/react-run/actions/workflows/ci.yaml)
-
-Run React(JS/TS) code snippets/components from your command-line without config.
+Run React code snippets without config 🚀
 
 ## Usage
 
-The entry point is a component called `App`, example:
+The entry point is always a component called `App` 👇
 
 ```tsx
 // example.tsx
@@ -42,7 +40,7 @@ Or run a hosted file 🤖
 react-run https://raw.githubusercontent.com/UltiRequiem/react-run/main/examples/typescript.tsx
 ```
 
-This will open your default browser with your component loaded.
+> This will open your default browser with your component loaded 🤯
 
 ## Features
 
