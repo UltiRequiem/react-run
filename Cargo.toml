@@ -1,6 +1,6 @@
 [package]
 name = "react-run"
-version = "0.3.0"
+version = "0.3.1"
 description = "Run React code snippets/components from your command-line without config"
 license = "MIT"
 readme = "readme.md"

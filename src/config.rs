@@ -3,7 +3,7 @@ use clap::Parser;
 #[derive(Parser)]
 #[clap(
     author = "UltiRequiem",
-    version = "0.1.0",
+    version = "0.3.1",
     about = "Easily run React snippets"
 )]
 pub struct Args {
