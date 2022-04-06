@@ -1,11 +1,11 @@
 use minreq::get;
 use std::{fs, sync};
-use url::Url;
 use swc::config::{JscConfig, Options};
 use swc_common::{
     errors::{ColorConfig, Handler},
     FileName, SourceMap,
 };
+use url::Url;
 
 static TEMPLATE: &str = include_str!("template.html");
 
