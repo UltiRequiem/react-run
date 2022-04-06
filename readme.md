@@ -58,6 +58,8 @@ Check the [examples/](./examples) to see what is supported.
 
 ## Installation
 
+> [Cargo](https://doc.rust-lang.org/cargo) is the Rust package manager.
+
 ```sh
 cargo install react-run
 ```
