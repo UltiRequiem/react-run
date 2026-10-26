@@ -3,7 +3,7 @@ use open::that;
 use std::{io::prelude::*, net};
 
 pub async fn serve(app: &str, addr: &str, nobrowser: bool) {
-    let listener = net::TcpListener::bind(&addr)
+    let listener = net::TcpListener::bind(addr)
         .unwrap_or_else(|e| panic!("Adders \"{}\" is already used: {}", addr, e));
 
     let url = format!("http://{}", addr);
