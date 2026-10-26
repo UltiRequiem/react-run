@@ -13,7 +13,7 @@ tokio = { version = "1.15.0", features = ["full"] }
 clap = { version = "3.0.10", features = ["derive"] }
 minreq = { version = "2.5.1", features = ["https"] }
 colored = "3"
-open = "2.0.2"
+open = "4.0.1"
 url = "2"
 swc_common = { version = "0.17.2", features = ["tty-emitter"] }
 swc_ecma_parser = "0.87.1"
