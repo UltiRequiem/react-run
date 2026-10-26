@@ -12,7 +12,7 @@ edition = "2021"
 tokio = { version = "1.15.0", features = ["full"] }
 clap = { version = "3.0.10", features = ["derive"] }
 minreq = { version = "2.5.1", features = ["https"] }
-colored = "2"
+colored = "3"
 open = "2.0.2"
 url = "2"
 swc_common = { version = "0.17.2", features = ["tty-emitter"] }
